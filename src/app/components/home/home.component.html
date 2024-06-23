@@ -1,0 +1,6 @@
+<div class="row">
+  <h3 class="fw-bold fs-1">Popular items this season</h3>
+  <div *ngFor="let product of allProducts" class="col-sm-6 col-md-4  col-xl-3">
+  <app-product [product]="product"></app-product>
+  </div>
+</div>

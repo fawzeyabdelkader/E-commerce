@@ -49,21 +49,16 @@ export class CartComponent implements OnInit {
     });
   }
 
+  
   showSuccess() {
-    this.toastr.success('تمت الاضافه بنجاح', 'إضافه', {
-      toastClass: `ngx-toastr ${this._CartService.getThemeClass()}`, // تطبيق الثيم
-    });
+    this.toastr.success('تمت الاضافه بنجاح', 'إضافه');
   }
 
   showWarning() {
-    this.toastr.warning('تم خفض الكميه ', 'تحذير', {
-      toastClass: `ngx-toastr ${this._CartService.getThemeClass()}`, // تطبيق الثيم
-    });
+    this.toastr.warning('تم خفض الكميه ', 'تحذير');
   }
 
   showError() {
-    this.toastr.error('تم الحذف بنجاج', 'حذف', {
-      toastClass: `ngx-toastr ${this._CartService.getThemeClass()}`, // تطبيق الثيم
-    });
+    this.toastr.error('تم الحذف بنجاج', 'حذف');
   }
 }

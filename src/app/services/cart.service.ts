@@ -44,12 +44,5 @@ export class CartService {
   }
 
 
-
-  setTheme(theme: 'light' | 'dark') {
-    this.currentTheme = theme;
-  }
-
-  getThemeClass() {
-    return this.currentTheme === 'light' ? 'toast-light' : 'toast-dark';
-  }
+ 
 }

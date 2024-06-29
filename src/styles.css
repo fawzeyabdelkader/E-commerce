@@ -50,13 +50,7 @@ a , a:hover{
      border-radius: 15px;
 
 }
-/* .product:hover
-{
-    box-shadow: red 10px 1px 10px 10px;
-    border: solid 1px var(--main-color);
-    border-radius: 15px;
-    filter: drop-shadow(0 0 0.75rem rgb(11, 150, 9));
- } */
+
 .product .btn
 {
     transition: transform 1s , opacity 1s;
@@ -98,4 +92,3 @@ a , a:hover{
 
 
 
- 

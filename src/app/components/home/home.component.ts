@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/iproduct';
-import { ProductServiceService } from 'src/app/services/product-service.service';
+import { ProductService } from 'src/app/services/product-service.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +9,9 @@ import { ProductServiceService } from 'src/app/services/product-service.service'
 })
 export class HomeComponent  implements OnInit{
   allProducts:IProduct[]=[];
-constructor(private _ProductServiceService:ProductServiceService){}
+constructor(private _ProductService:ProductService){}
   ngOnInit(): void {
-    this._ProductServiceService.getAllProducts().subscribe({
+    this._ProductService.getAllProducts().subscribe({
       next:(res)=>{
         console.log(res)
         this.allProducts=res.data

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/iproduct';
-import { ProductServiceService } from 'src/app/services/product-service.service';
+import { ProductService } from 'src/app/services/product-service.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 @Component({
   selector: 'app-product-details',
@@ -13,14 +15,14 @@ export class ProductDetailsComponent implements OnInit {
   productDetail?:IProduct;
   constructor(
     private _ActivatedRoute: ActivatedRoute,
-    private _ProductServiceService: ProductServiceService
+    private _ProductService: ProductService
   ) {}
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.productId = params.get('id');
     });
     if (this.productId != null) {
-      this._ProductServiceService.getProductById(this.productId).subscribe({
+      this._ProductService.getProductById(this.productId).subscribe({
         next: (response) => {
           console.log(response);
           this.productDetail = response.data;
@@ -33,4 +35,34 @@ export class ProductDetailsComponent implements OnInit {
       })
     }
   }
+
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    autoplay:true,
+    autoplayHoverPause:true,
+    autoplayTimeout:2000,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: false
+  }
+
 }

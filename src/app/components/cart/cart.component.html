@@ -1,1 +1,35 @@
-<p>cart works!</p>
+<div class="container bg-main-light p-4 border shadow-lg my-5 rounded">
+  <h4 class="my-3 fw-bold ">Shop Cart</h4>
+  <p class="fw-bold font-sm border-bottom pb-3">Total Price : <span class="text-main ">
+      {{cartDetails?.data?.totalCartPrice}} </span> </p>
+
+  <div *ngFor=" let carItems of cartDetails?.data?.products" class="row p-3 border-bottom pb-3 align-items-center">
+    <div class="col-md-1">
+      <div>
+        <img [src]="carItems.product.imageCover" class="w-100 img-thumbnail" alt="">
+      </div>
+    </div>
+    <div class="col-md-11">
+      <div class="d-flex justify-content-between">
+        <div>
+          <p class="font-sm fw-bold my-0">{{carItems.product.title.split(' ').slice(0,15).join(' ')}}</p>
+          <p class="fw-bold font-sm my-0 text-main ">Price : {{carItems.price}} </p>
+          <p class="fw-bold font-sm my-0 text-main ">Total Product Price : {{carItems.count*carItems.price}} </p>
+          <button (click)="removeCartItem(carItems.product._id)" (click)="showError()" class="btn m-0 p-0">
+            <i class="fa-regular fa-trash-can text-main"></i>
+            <span class="ms-1 fw-bold font-sm">Remove</span>
+          </button>
+        </div>
+
+        <div>
+
+          <button (click)="updateCartItem(carItems.product._id,carItems.count+1)" (click)="showSuccess()"
+            class="border-main rounded text-main">+</button>
+          <span class="mx-3">{{carItems.count}} </span>
+          <button (click)="updateCartItem(carItems.product._id,carItems.count-1)" (click)="showWarning()"
+            class="border-main rounded text-err">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

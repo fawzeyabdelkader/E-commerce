@@ -1,5 +1,5 @@
- <a [routerLink]="['/product',product._id]"  >
-   <div class="p-4 product">
+<div class="p-4 product">
+  <a [routerLink]="['/product',product._id]">
     <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
     <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
     <p class="fw-bold">{{product.title.split(' ').slice(0,2).join(' ')}}</p>
@@ -10,6 +10,6 @@
         <span class="fw-bold font-sm">{{product.ratingsAverage}}</span>
       </div>
     </div>
-    <button class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
-  </div>
- </a>
+  </a>
+  <button (click)="addToCart(product._id)" class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
+</div>

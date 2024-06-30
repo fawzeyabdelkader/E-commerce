@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/iproduct';
 import { ProductService } from 'src/app/services/product-service.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
-
+import { CartService } from 'src/app/services/cart.service';
+ import { ToasterService } from 'src/app/services/toaster.service';
+ 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -12,10 +13,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class ProductDetailsComponent implements OnInit {
   productId?: string | null;
-  productDetail?:IProduct;
+  productDetail?: IProduct| undefined;
+
   constructor(
     private _ActivatedRoute: ActivatedRoute,
-    private _ProductService: ProductService
+    private _ProductService: ProductService,
+    private _CartService: CartService,
+    private _toaster: ToasterService,
   ) {}
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe((params) => {
@@ -27,15 +31,13 @@ export class ProductDetailsComponent implements OnInit {
           console.log(response);
           this.productDetail = response.data;
           console.log(this.productDetail);
-
         },
         error: (error) => {
           console.log(error);
         },
-      })
+      });
     }
   }
-
 
   customOptions: OwlOptions = {
     loop: true,
@@ -43,26 +45,46 @@ export class ProductDetailsComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     dots: true,
-    autoplay:true,
-    autoplayHoverPause:true,
-    autoplayTimeout:2000,
+    autoplay: true,
+    autoplayHoverPause: true,
+    autoplayTimeout: 2000,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: false
+    nav: false,
+  };
+
+
+  addToCart(id:string)
+  {
+    this._CartService.addCartItem(id).subscribe({
+      next:(res)=>{
+        console.log(res)
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
+  }
+
+
+
+  showSuccess() {
+    this._toaster.showSuccess();
+   
   }
 
 }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CartService {
   //singleton instance
   headers: any = { token: localStorage.getItem('userToken') };
-  private currentTheme: string = 'light';
+ 
   constructor(private _HttpClient: HttpClient) {}
   addCartItem(id: string): Observable<any> {
     return this._HttpClient.post(
@@ -42,6 +42,10 @@ export class CartService {
       { headers: this.headers }
     );
   }
+
+
+
+
 
 
  

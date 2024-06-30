@@ -33,7 +33,7 @@
               <span class="fw-bold font-sm">{{productDetail?.ratingsAverage}}</span>
             </div>
           </div>
-          <button class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
+          <button (click)="addToCart(productDetail!._id)" (click)=" showSuccess()" class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
     </div>
 
   </div>

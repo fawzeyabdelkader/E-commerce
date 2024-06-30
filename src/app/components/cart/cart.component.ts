@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse } from 'src/app/interfaces/api-response';
 import { CartService } from 'src/app/services/cart.service';
-import { ToastrService } from 'ngx-toastr';
+ import { ToasterService } from 'src/app/services/toaster.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
   // cartDetails?:any;
   constructor(
     private _CartService: CartService,
-    private toastr: ToastrService
+    private _toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -50,15 +50,18 @@ export class CartComponent implements OnInit {
   }
 
   
+ 
   showSuccess() {
-    this.toastr.success('تمت الاضافه بنجاح', 'إضافه');
+    this._toaster.showSuccess()
   }
 
   showWarning() {
-    this.toastr.warning('تم خفض الكميه ', 'تحذير');
+    this._toaster.showWarning()
   }
 
   showError() {
-    this.toastr.error('تم الحذف بنجاج', 'حذف');
+    this._toaster.showError()
   }
+
+
 }

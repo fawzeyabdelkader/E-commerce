@@ -1,6 +1,7 @@
 import { Component, Input,   } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/iproduct';
 import { CartService } from 'src/app/services/cart.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  constructor(private _CartService:CartService){}
+  constructor(private _CartService:CartService,private _toaster:ToasterService){}
  @Input() product!:IProduct;
 
  addToCart(id:string)
@@ -22,5 +23,10 @@ export class ProductComponent {
      }
    })
  }
+
+ showSuccess() {
+ this._toaster.showSuccess()
+ 
+}
 
 }

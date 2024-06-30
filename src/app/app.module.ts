@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,8 +31,6 @@ import { CategoryDetailsComponent } from './components/category-details/category
 
 //^ Toaster
 import { ToastrModule } from 'ngx-toastr';
-
- 
 
 @NgModule({
   declarations: [
@@ -68,15 +65,22 @@ import { ToastrModule } from 'ngx-toastr';
     CarouselModule,
     //^ Toaster
     ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-      progressBar: true,
-      progressAnimation: 'decreasing',
-      closeButton: true,
-      messageClass: 'toast-message',
-    }),
+      timeOut: 10000, // وقت عرض رسالة التوست
+      positionClass: 'toast-top-right', // مكان عرض رسالة التوست
+      preventDuplicates: true, // منع تكرار رسائل التوست
+      closeButton: true, // عرض زر الإغلاق
+      progressBar: true, // عرض شريط التقدم
+      progressAnimation: 'increasing', // نوع حركة شريط التقدم
+      messageClass: 'toast-message', // الفئة CSS لنص رسالة التوست
 
+      tapToDismiss: true, // إغلاق رسالة التوست عند النقر عليها
+      extendedTimeOut: 1000, // وقت الانتظار الإضافي بعد تمرير الماوس
+      enableHtml: true, // تمكين عرض HTML
+      titleClass: 'toast-title', // الفئة CSS لعنوان رسالة التوست
+      easing: 'ease-in', // نوع التسهيل للرسوم المتحركة
+      easeTime: 300, // وقت التسهيل للرسوم المتحركة
+      onActivateTick: false, // تحديث عرض الرسوم المتحركة في الوقت المناسب
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

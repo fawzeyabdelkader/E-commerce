@@ -5,7 +5,7 @@ import { ProductService } from 'src/app/services/product-service.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from 'src/app/services/cart.service';
  import { ToasterService } from 'src/app/services/toaster.service';
- 
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -31,6 +31,7 @@ export class ProductDetailsComponent implements OnInit {
           console.log(response);
           this.productDetail = response.data;
           console.log(this.productDetail);
+
         },
         error: (error) => {
           console.log(error);
@@ -73,6 +74,8 @@ export class ProductDetailsComponent implements OnInit {
     this._CartService.addCartItem(id).subscribe({
       next:(res)=>{
         console.log(res)
+        this._CartService.cartItemsNum.next(res.numOfCartItems)
+
       },
       error:(err)=>{
         console.log(err)
@@ -84,7 +87,7 @@ export class ProductDetailsComponent implements OnInit {
 
   showSuccess() {
     this._toaster.showSuccess();
-   
+
   }
 
 }

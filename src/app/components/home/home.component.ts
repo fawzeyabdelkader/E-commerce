@@ -13,14 +13,15 @@ constructor(private _ProductService:ProductService){}
   ngOnInit(): void {
     this._ProductService.getAllProducts().subscribe({
       next:(res)=>{
-        console.log(res)
+        // console.log(res)
         this.allProducts=res.data
-        console.log(res.data)
-        console.log(res.data[1])
-        console.log(res.data[1].brand)
-        console.log(res.data[1].brand.name)
+        // console.log(res.data)
+        // console.log(res.data[1])
+        // console.log(res.data[1].brand)
+        // console.log(res.data[1].brand.name)
       },
-      error:(err)=>{console.log(err);
+      error:(err)=>{
+        // console.log(err);
       }
     })
    }

@@ -16,7 +16,7 @@ import { BrandsComponent } from './components/brands/brands.component';
 import { ReactiveFormsModule } from '@angular/forms';
 //^ Template-driven forms **//
 // import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { VerifyResetCodeComponent } from './components/verify-reset-code/verify-reset-code.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -27,10 +27,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HomeMainSliderComponent } from './components/home-main-slider/home-main-slider.component';
 import { HomeCategoriesSliderComponent } from './components/home-categories-slider/home-categories-slider.component';
-import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 
 //^ Toaster
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ShippingAddressComponent } from './components/shipping-address/shipping-address.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { AddEGPPipe } from './pipes/add-egp.pipe';
+import { TitleSlicePipe } from './pipes/title-slice.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,10 @@ import { ToastrModule } from 'ngx-toastr';
     ProductDetailsComponent,
     HomeMainSliderComponent,
     HomeCategoriesSliderComponent,
-    CategoryDetailsComponent,
+    ShippingAddressComponent,
+    OrdersComponent,
+    AddEGPPipe,
+    TitleSlicePipe,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +89,13 @@ import { ToastrModule } from 'ngx-toastr';
       onActivateTick: false, // تحديث عرض الرسوم المتحركة في الوقت المناسب
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true, 
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

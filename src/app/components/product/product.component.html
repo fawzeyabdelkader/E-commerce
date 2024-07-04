@@ -2,9 +2,9 @@
   <a [routerLink]="['/product',product._id]">
     <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
     <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
-    <p class="fw-bold">{{product.title.split(' ').slice(0,2).join(' ')}}</p>
+    <p class="fw-bold">{{product.title|titleSlice:2}}</p>
     <div class="d-flex justify-content-between">
-      <span class="fw-bold font-sm">{{product.price}} EGP</span>
+      <span class="fw-bold font-sm">{{product.price | addEGP}}  </span>
       <div class="">
         <i class="fa-solid fa-star rating-color mx-2"></i>
         <span class="fw-bold font-sm">{{product.ratingsAverage}}</span>

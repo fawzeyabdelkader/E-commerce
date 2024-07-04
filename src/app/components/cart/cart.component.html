@@ -1,7 +1,7 @@
 <div class="container bg-main-light p-4 border shadow-lg my-5 rounded">
   <h4 class="my-3 fw-bold ">Shop Cart</h4>
   <p class="fw-bold font-sm border-bottom pb-3">Total Price : <span class="text-main ">
-      {{cartDetails?.data?.totalCartPrice}} </span> </p>
+      {{cartDetails?.data?.totalCartPrice | addEGP}} </span> </p>
 
   <div *ngFor=" let carItems of cartDetails?.data?.products" class="row p-3 border-bottom pb-3 align-items-center">
     <div class="col-md-1">
@@ -14,8 +14,8 @@
         <div>
           <p class="font-sm fw-bold my-0">{{carItems.product.category.name}}</p>
           <p class="font-sm fw-bold my-0">{{carItems.product.title.split(' ').slice(0,15).join(' ')}}</p>
-          <p class="fw-bold font-sm my-0 text-main ">Price : {{carItems.price}} </p>
-          <p class="fw-bold font-sm my-0 text-main ">Total Product Price : {{carItems.count*carItems.price}} </p>
+          <p class="fw-bold font-sm my-0  ">Price : <span class="text-main">{{carItems.price | addEGP}}</span> </p>
+          <p class="fw-bold font-sm my-0  ">Total Product Price : <span class="text-main">{{carItems.count*carItems.price | addEGP}} </span></p>
           <button (click)="removeCartItem(carItems.product._id)" (click)="showError()" class="btn m-0 p-0">
             <i class="fa-regular fa-trash-can text-main"></i>
             <span class="ms-1 fw-bold font-sm">Remove</span>
@@ -32,5 +32,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <a [routerLink]="['/shippingAddress',cartDetails?.data?._id]" class="btn bg-main  text-light my-3">Check out
+      <img src="./assets/images/visa-1.svg" width="40px" class="mx-2 ">
+    </a>
   </div>
 </div>

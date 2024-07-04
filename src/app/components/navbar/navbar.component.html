@@ -14,9 +14,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="home">Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="cart">Cart</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="products">Products</a>
         </li>
@@ -51,6 +51,15 @@
         <li class="nav-item">
           <a *ngIf="isUserLogin" (click)="handelLogout()" class="nav-link cursor-pointer">SignOut</a>
         </li>
+        <li class="nav-item">
+          <a *ngIf="isUserLogin" routerLink="/cart" class="nav-link cursor-pointer position-relative">
+            <i class="fa-solid fa-cart-shopping fs-3"></i>
+            <span class="position-absolute top-25 start-75 translate-middle badge rounded bg-main">
+              {{numOfCartItems}} +
+             </span>
+          </a>
+        </li>
+
 
 
       </ul>

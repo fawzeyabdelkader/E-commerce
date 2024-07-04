@@ -21,6 +21,8 @@ export class CartComponent implements OnInit {
       next: (res) => {
         this.cartDetails = res;
         // this.cartDetails=res.data
+        console.log(res);
+
       },
       error: (err) => {
         console.log(err);
@@ -31,6 +33,8 @@ export class CartComponent implements OnInit {
     this._CartService.removeCartItem(id).subscribe({
       next: (res) => {
         this.cartDetails = res;
+        // this.cartItemsNum.next(res.numOfCartItems) ;
+        this._CartService.cartItemsNum.next(res.numOfCartItems)
       },
       error: (err) => {
         console.log(err);
@@ -42,6 +46,7 @@ export class CartComponent implements OnInit {
     this._CartService.updateCartItem(id, count).subscribe({
       next: (res) => {
         this.cartDetails = res;
+ 
       },
       error: (err) => {
         console.log(err);
@@ -49,8 +54,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  
- 
+
+
   showSuccess() {
     this._toaster.showSuccess()
   }

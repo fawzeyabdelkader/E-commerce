@@ -14,7 +14,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { authGuard } from './Guards/auth.guard';
 import { noAuthGuard } from './Guards/no-auth.guard';
  import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { ShippingAddressComponent } from './components/shipping-address/shipping-address.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'register',pathMatch:'full'},
@@ -23,9 +24,10 @@ const routes: Routes = [
    {path:'cart',canActivate:[authGuard],component:CartComponent},
   {path:'products',canActivate:[authGuard],component:ProductsComponent},
   {path:'categories',canActivate:[authGuard],component:CategoriesComponent},
-  {path:'category-details',canActivate:[authGuard],component:CategoryDetailsComponent},
-  {path:'brands',canActivate:[authGuard],component:BrandsComponent},
+   {path:'brands',canActivate:[authGuard],component:BrandsComponent},
   {path:'product/:id',canActivate:[authGuard],component:ProductDetailsComponent},
+  {path:'shippingAddress/:id',canActivate:[authGuard],component:ShippingAddressComponent},
+  {path:'allorders',canActivate:[authGuard],component:OrdersComponent},
 
   {path:'login',canActivate:[noAuthGuard],component:LoginComponent},
   {path:'register',canActivate:[noAuthGuard],component:RegisterComponent},

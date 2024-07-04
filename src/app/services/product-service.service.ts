@@ -22,4 +22,15 @@ export class ProductService {
   {
     return this._HttpClient.get('https://ecommerce.routemisr.com/api/v1/categories');
   }
+
+
+
+
+
+
+  getProductByCategoryIn(id: string): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/products?category[in]=${id}`
+    );
+  }
 }

@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   isUserLogin:boolean=false;
   userInfo:any={};
   numOfCartItems:number=0
-  constructor(private _AuthService:AuthService,private _CartService:CartService){}
+   constructor(private _AuthService:AuthService,private _CartService:CartService){}
   ngOnInit(): void {
     this._AuthService.isLogin.subscribe((isLogged)=>{this.isUserLogin=isLogged})
     // this._AuthService.isLogin.subscribe({

@@ -1,5 +1,6 @@
+ 
 <div class="p-4 product">
-  <a [routerLink]="['/product',product._id]">
+   <a [routerLink]="['/product',product._id]">
     <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
     <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
     <p class="fw-bold">{{product.title|titleSlice:2}}</p>

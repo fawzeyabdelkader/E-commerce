@@ -5,26 +5,25 @@ import { ProductService } from 'src/app/services/product-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent  implements OnInit{
-  allProducts:IProduct[]=[];
-constructor(private _ProductService:ProductService){}
+export class HomeComponent implements OnInit {
+  allProducts: IProduct[] = [];
+  searchItem: string = '';
+  constructor(private _ProductService: ProductService) {}
   ngOnInit(): void {
     this._ProductService.getAllProducts().subscribe({
-      next:(res)=>{
+      next: (res) => {
         // console.log(res)
-        this.allProducts=res.data
+        this.allProducts = res.data;
         // console.log(res.data)
         // console.log(res.data[1])
         // console.log(res.data[1].brand)
         // console.log(res.data[1].brand.name)
       },
-      error:(err)=>{
+      error: (err) => {
         // console.log(err);
-      }
-    })
-   }
-
-
+      },
+    });
+  }
 }

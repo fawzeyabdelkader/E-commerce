@@ -13,7 +13,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { RegisterComponent } from './components/register/register.component';
 import { ProductsComponent } from './components/products/products.component';
 import { BrandsComponent } from './components/brands/brands.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //^ Template-driven forms **//
 // import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -35,6 +35,7 @@ import { ShippingAddressComponent } from './components/shipping-address/shipping
 import { OrdersComponent } from './components/orders/orders.component';
 import { AddEGPPipe } from './pipes/add-egp.pipe';
 import { TitleSlicePipe } from './pipes/title-slice.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { TitleSlicePipe } from './pipes/title-slice.pipe';
     OrdersComponent,
     AddEGPPipe,
     TitleSlicePipe,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { TitleSlicePipe } from './pipes/title-slice.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     CarouselModule,
     //^ Toaster
     ToastrModule.forRoot({
@@ -93,7 +96,7 @@ import { TitleSlicePipe } from './pipes/title-slice.pipe';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true, 
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

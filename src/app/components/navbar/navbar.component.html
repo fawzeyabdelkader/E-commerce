@@ -51,6 +51,8 @@
         <li class="nav-item">
           <a *ngIf="isUserLogin" (click)="handelLogout()" class="nav-link cursor-pointer">SignOut</a>
         </li>
+
+
         <li class="nav-item">
           <a *ngIf="isUserLogin" routerLink="/cart" class="nav-link cursor-pointer position-relative">
             <i class="fa-solid fa-cart-shopping fs-3"></i>
@@ -59,7 +61,20 @@
              </span>
           </a>
         </li>
-   
+        <li class="nav-item">
+          <!-- <a *ngIf="isUserLogin" routerLink="" class="nav-link cursor-pointer position-relative">
+            <i class="fa fa-heart fs-3"></i>
+            <span class="position-absolute top-25 start-75 translate-middle badge rounded bg-main ">
+              {{wishListItemsNum}} +
+             </span>
+          </a> -->
+          <a *ngIf="isUserLogin" routerLink="/allWishList" class="nav-link rounded cursor-pointer  bg-body-secondary ms-4 d-flex justify-content-center align-items-center">
+            <i class="fa fa-heart fs-3"></i>
+            <span class="fw-bold ms-2"> {{wishListNum}} </span>
+
+          </a>
+        </li>
+
 
 
 

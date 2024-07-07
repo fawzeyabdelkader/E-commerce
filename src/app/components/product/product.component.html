@@ -1,16 +1,35 @@
- 
-<div class="p-4 product">
-   <a [routerLink]="['/product',product._id]">
+<div class="p-4 product ">
+
+  <a [routerLink]="['/product',product._id]">
     <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
     <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
     <p class="fw-bold">{{product.title|titleSlice:2}}</p>
     <div class="d-flex justify-content-between">
-      <span class="fw-bold font-sm">{{product.price | addEGP}}  </span>
+      <span class="fw-bold font-sm">{{product.price | addEGP}} </span>
       <div class="">
         <i class="fa-solid fa-star rating-color mx-2"></i>
         <span class="fw-bold font-sm">{{product.ratingsAverage}}</span>
       </div>
     </div>
   </a>
-  <button (click)="addToCart(product._id)" (click)="showSuccess()" class="btn bg-main w-100 text-white mt-3">+ Add To Cart</button>
+  <!-- <div (click)="addToWishlistProduct(product)" class=" cursor-pointer   d-flex  justify-content-end "> -->
+  <div (click)="addToWishlist(product)" class=" cursor-pointer   d-flex  justify-content-end ">
+
+    <i [class]="isAddedToWishlist ? 'fa fa-heart fs-3  ' : 'far fa-heart  fs-3'" [style.color]="isAddedToWishlist ? 'red' : 'black'"></i>
+        <!-- <i class="fa" [ngClass]="{'fa-heart fs-3 text-danger': isAddedToWishlist, 'far fa-heart  fs-3': !isAddedToWishlist}" [style.color]="isAddedToWishlist ? 'red' : 'black'"></i> -->
+   </div>
+
+
+  <div class=" d-flex justify-content-between  align-items-center   btnN  ">
+
+    <button (click)="addToCart(product._id)" (click)="showSuccess()" class="btn bg-main w-100 text-white mt-3">
+      <span *ngIf="!isLoading">+ Add
+        ToCart</span>
+      <span *ngIf="isLoading"><i class="fas  fa-spin fa-spinner"></i></span>
+    </button>
+
+
+
+
+  </div>
 </div>

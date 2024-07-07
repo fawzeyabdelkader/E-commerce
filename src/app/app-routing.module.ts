@@ -16,6 +16,7 @@ import { noAuthGuard } from './Guards/no-auth.guard';
  import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShippingAddressComponent } from './components/shipping-address/shipping-address.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { AllWishListComponent } from './components/all-wish-list/all-wish-list.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'register',pathMatch:'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'product/:id',canActivate:[authGuard],component:ProductDetailsComponent},
   {path:'shippingAddress/:id',canActivate:[authGuard],component:ShippingAddressComponent},
   {path:'allorders',canActivate:[authGuard],component:OrdersComponent},
+  {path:'allWishList',canActivate:[authGuard],component:AllWishListComponent},
 
   {path:'login',canActivate:[noAuthGuard],component:LoginComponent},
   {path:'register',canActivate:[noAuthGuard],component:RegisterComponent},

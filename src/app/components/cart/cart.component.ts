@@ -46,7 +46,7 @@ export class CartComponent implements OnInit {
     this._CartService.updateCartItem(id, count).subscribe({
       next: (res) => {
         this.cartDetails = res;
- 
+
       },
       error: (err) => {
         console.log(err);

@@ -9,7 +9,7 @@ export class CartService {
   //singleton instance
   // headers: any = { token: localStorage.getItem('userToken') };
   cartItemsNum=new BehaviorSubject<number>(0)
-
+ 
   constructor(private _HttpClient: HttpClient) {
     this.getUserCart().subscribe({
       next: (res) => {
@@ -57,4 +57,7 @@ export class CartService {
       { shippingAddress: shippingAddress }
     );
   }
+
+
+
 }

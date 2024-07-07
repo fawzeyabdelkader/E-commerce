@@ -17,4 +17,5 @@ export interface IProduct {
   category: ICategory;
   brand: IBrand;
   ratingsAverage: number;
+  isInWishlist?: boolean;
 }

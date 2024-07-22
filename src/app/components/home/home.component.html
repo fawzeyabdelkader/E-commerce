@@ -1,9 +1,12 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-home-main-slider></app-home-main-slider>
+<app-home-categories-slider></app-home-categories-slider>
+
+<input [(ngModel)]="searchItem" type="text" class="my-3 form-control" placeholder="&#xF002; Search by product name ..."
+  style="font-family:Arial, FontAwesome" />
 <div class="row">
-  <app-home-main-slider></app-home-main-slider>
-  <app-home-categories-slider></app-home-categories-slider>
-  <h3 class="fw-bold fs-1">Popular items this season</h3>
-    <input [(ngModel)]="searchItem" type="text"   class="my-3 form-control"  placeholder="&#xF002; Search ..."style="font-family:Arial, FontAwesome" />
-   <div *ngFor="let product of allProducts|search:searchItem" class="col-sm-6 col-md-4  col-xl-3">
-  <app-product [product]="product"></app-product>
+  <h3 class="fw-bold">Popular items this season</h3>
+  <div *ngFor="let product of allProducts|search:searchItem" class="col-sm-6 col-md-4  col-xl-3">
+    <app-product [product]="product"></app-product>
   </div>
 </div>

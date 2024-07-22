@@ -4,7 +4,7 @@ import { IProduct } from 'src/app/interfaces/iproduct';
 import { ProductService } from 'src/app/services/product-service.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from 'src/app/services/cart.service';
- import { ToasterService } from 'src/app/services/toaster.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -13,15 +13,18 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductDetailsComponent implements OnInit {
   productId?: string | null;
-  productDetail?: IProduct| undefined;
+  productDetail?: IProduct | undefined;
+  isLoading: boolean = false;
 
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _ProductService: ProductService,
     private _CartService: CartService,
-    private _toaster: ToasterService,
+    private _toaster: ToastrService
   ) {}
   ngOnInit(): void {
+    this.isLoading = true;
+
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.productId = params.get('id');
     });
@@ -31,10 +34,11 @@ export class ProductDetailsComponent implements OnInit {
           console.log(response);
           this.productDetail = response.data;
           console.log(this.productDetail);
-
+          this.isLoading = false;
         },
         error: (error) => {
           console.log(error);
+          this.isLoading = false;
         },
       });
     }
@@ -68,26 +72,26 @@ export class ProductDetailsComponent implements OnInit {
     nav: false,
   };
 
+  addToCart(id: string) {
+    this.isLoading = true;
 
-  addToCart(id:string)
-  {
     this._CartService.addCartItem(id).subscribe({
-      next:(res)=>{
-        console.log(res)
-        this._CartService.cartItemsNum.next(res.numOfCartItems)
-
+      next: (res) => {
+        console.log(res);
+        this._CartService.cartItemsNum.next(res.numOfCartItems);
+        this._toaster.success('Successfully added to cart! ', 'Added', {
+          closeButton: true,
+          timeOut: 3000,
+          easing: 'ease-in-out',
+          progressBar: true,
+          progressAnimation: 'increasing',
+        });
+        this.isLoading = false;
       },
-      error:(err)=>{
-        console.log(err)
-      }
-    })
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
+    });
   }
-
-
-
-  showSuccess() {
-    this._toaster.showSuccess();
-
-  }
-
 }

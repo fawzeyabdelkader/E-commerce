@@ -1,21 +1,3 @@
-// ^ * * Template-driven forms * * ^//
-// import { Component } from '@angular/core';
-// import { NgForm, Validator } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-register',
-//   templateUrl: './register.component.html',
-//   styleUrls: ['./register.component.css']
-// })
-// export class RegisterComponent {
-// handelSubmit(myForm:NgForm){
-//   console.log('handelSubmit',myForm);
-
-// }
-// }
-
-// ^ * * Reactive forms * * ^ //
-
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -31,6 +13,8 @@ export class RegisterComponent {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
   errorMessage: string = '';
   isLoading: boolean = false;
+  passwordFieldType: string = 'password';
+  repasswordFieldType: string = 'password';
 
   registerForm: FormGroup = new FormGroup(
     {
@@ -74,59 +58,12 @@ export class RegisterComponent {
       });
     }
   }
-  // **  Test Name Valid Or Invalid
-  nameValid: string = '';
-  testName(x: any) {
-    if (x.registerForm.get('name').status == 'INVALID') {
-      this.nameValid = 'la';
-    } else if (x.registerForm.get('name').status == 'VALID') {
-      this.nameValid = 'tmam';
-    }
-    console.log(this.nameValid);
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
-  // **  Test Email Valid Or Invalid
-
-  emailValid: string = '';
-  testEmail(x: any) {
-    if (x.registerForm.get('email').status == 'INVALID') {
-      this.emailValid = 'la';
-    } else if (x.registerForm.get('email').status == 'VALID') {
-      this.emailValid = 'tmam';
-    }
-    console.log(this.emailValid);
-  }
-  // **  Test Password Valid Or Invalid
-
-  passwordValid: string = '';
-  testPassword(x: any) {
-    if (x.registerForm.get('password').status == 'INVALID') {
-      this.passwordValid = 'la';
-    } else if (x.registerForm.get('password').status == 'VALID') {
-      this.passwordValid = 'tmam';
-    }
-    console.log(this.passwordValid);
-  }
-  // **  Test rePassword Valid Or Invalid
-
-  rePasswordValid: string = '';
-  testRePassword(x: any) {
-    if (x.registerForm.get('rePassword').status == 'INVALID') {
-      this.rePasswordValid = 'la';
-    } else if (x.registerForm.get('rePassword').status == 'VALID') {
-      this.rePasswordValid = 'tmam';
-    }
-    console.log(this.rePasswordValid);
-  }
-  // **  Test phone Valid Or Invalid
-
-  phoneValid: string = '';
-  testPhone(x: any) {
-    if (x.registerForm.get('phone').status == 'INVALID') {
-      this.phoneValid = 'la';
-    } else if (x.registerForm.get('phone').status == 'VALID') {
-      this.phoneValid = 'tmam';
-    }
-    console.log(this.phoneValid);
+  toggleRepasswordVisibility() {
+    this.repasswordFieldType = this.repasswordFieldType === 'password' ? 'text' : 'password';
   }
 }

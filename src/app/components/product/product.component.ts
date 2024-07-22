@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/iproduct';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product-service.service';
-import { ToasterService } from 'src/app/services/toaster.service';
+// import { ProductService } from 'src/app/services/product-service.service';
+// import { ToasterService } from 'src/app/services/toaster.service';
+import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-product',
@@ -11,45 +13,38 @@ import { ToasterService } from 'src/app/services/toaster.service';
 })
 export class ProductComponent implements OnInit {
   products: IProduct[] = [];
+  isLoading: boolean = false;
+  @Input() product!: IProduct;
+  wishListProductIdsList:string[]=[]
+  // isAddedToWishlist: boolean = false;
+  // wishListProduct:string[]=[]
   constructor(
     private _CartService: CartService,
-    private _toaster: ToasterService,
-    private _ProductService: ProductService
+    private _toaster: ToastrService,
+    // private _ProductService: ProductService
+    private _WishlistService: WishlistService
   ) {}
   ngOnInit(): void {
-    // this.product.isInWishlist = this._ProductService.wishlistProducts.includes(this.product._id);
 
-    this._ProductService.getAllProducts().subscribe({
-      next: (res) => {
-        this.products = res.data;
-      },
-      error: (err) => {
-        console.error('Error loading products:', err);
-      },
-    });
+    this._WishlistService.wishListProductIds.subscribe({
+      next: (idsList)=>{this.wishListProductIdsList=idsList}
+    })
+    // this.product.isInWishlist = this._ProductService.wishlistProducts.includes(this.product._id);
+    // this._ProductService.getAllProducts().subscribe({
+    //   next: (res) => {
+    //     this.products = res.data;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading products:', err);
+    //   },
+    // });
+    // this._ProductService.wishListProductId.subscribe((idsList)=>{this.wishListProduct=idsList})
   }
 
-  // ngOnInit(): void {
-  //   this._ProductService.getAllProducts().subscribe({
-  //     next: (res) => {
-  //       this.products = res.data.map((product: IProduct) => {
-  //         return {
-  //           ...product,
-  //           isInWishlist: false
-  //         };
-  //       });
-  //       this.checkWishlist();
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading products:', err);
-  //     },
-  //   });
+  // isProductId(id:string){
+
+  //   return this.wishListProduct.includes(id)
   // }
-
-  isLoading: boolean = false;
-  isAddedToWishlist: boolean = false;
-
-  @Input() product!: IProduct;
 
   addToCart(id: string) {
     this.isLoading = true;
@@ -58,54 +53,74 @@ export class ProductComponent implements OnInit {
         console.log(res);
         this.isLoading = false;
         this._CartService.cartItemsNum.next(res.numOfCartItems);
-        this._toaster.showSuccess();
+        this._toaster.success(res.message, 'Added', {
+          closeButton: true,
+          timeOut: 3000,
+          easing: 'ease-in-out',
+          progressBar: true,
+          progressAnimation: 'increasing',
+        });
       },
       error: (err) => {
         console.log(err);
         this.isLoading = false;
-        this._toaster.showError();
+        // this.toastr.showError();
       },
     });
   }
 
-  showSuccess() {
-    this._toaster.showSuccess();
-  }
-
-  // checkWishlist() {
-  //   this._ProductService.getAllWishList().subscribe({
-  //     next: (res) => {
-  //       const wishlistIds = res.data.map((item: any) => item.productId);
-  //       this.products = this.products.map((product: IProduct) => {
-  //         return {
-  //           ...product,
-  //           isInWishlist: wishlistIds.includes(product._id)
-  //         };
-  //       });
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading wishlist:', err);
-  //     },
-  //   });
-  // }
-
-  addToWishlist(product: IProduct) {
-    this._ProductService.addToWishlist(product).subscribe({
+  addToWishlist(productId: string) {
+    this.isLoading = true;
+    this._WishlistService.addToWishlist(productId).subscribe({
       next: (res) => {
-        this.product.isInWishlist = true; // Update the local state to reflect the change
-
         console.log(res);
-        this.isAddedToWishlist = true;
-        // product.isInWishlist = true;
-        // this._ProductService.wishListItemsNum.next(this._ProductService.wishListItemsNum.value + 1);
-        this._ProductService.wishListItemsNum.next(res.count);
-        this._toaster.showSuccess();
+        this._toaster.success(res.message, 'product Add!');
+        this.isLoading = false;
+        this._WishlistService.wishListProductIds.next(res.data);
+        this._WishlistService.wishListItemsCount.next(res.data.length)
       },
       error: (err) => {
-        console.error('Error adding product to wishlist:', err);
-        this._toaster.showError();
-        this.isAddedToWishlist = false;
+        console.log(err);
+        this.isLoading = false;
       },
     });
+
+    // addToWishlist(product: IProduct) {
+    //   this._ProductService.addToWishlist(product).subscribe({
+    //     next: (res) => {
+    //       this.product.isInWishlist = true;
+
+    //       console.log(res);
+    //       this.isAddedToWishlist = true;
+    //        this._ProductService.wishListItemsNum.next(res.count);
+    //       this._ProductService.wishListProductId.next(res.data)
+
+    //       this._toaster.success('Successfully added to Wishlist! ', 'Added',{
+    //         closeButton: true,
+    //         timeOut: 3000,
+    //         easing:'ease-in-out',
+    //         progressBar: true,
+    //         progressAnimation: 'increasing',
+    //        });
+    //     },
+    //     error: (err) => {
+    //       console.error('Error adding product to wishlist:', err);
+    //       this._toaster.error('Remove to Wishlist! ', 'Remove',{
+    //         closeButton: true,
+    //         timeOut: 3000,
+    //         easing:'ease-in-out',
+    //         progressBar: true,
+    //         progressAnimation: 'increasing',
+    //        });
+    //        this.isAddedToWishlist = false;
+
+    //     },
+    //   });
+    // }
   }
+
+isWishListProduct(id:string){
+  return this.wishListProductIdsList.includes(id)
+}
+
 }

@@ -1,5 +1,5 @@
 <div class="p-4 product ">
-
+<i (click)="addToWishlist(product._id)" [class]="isWishListProduct(product._id)?'fas text-danger':'fa-regular'"  class="fa-heart fs-4 cursor-pointer"></i>
   <a [routerLink]="['/product',product._id]">
     <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
     <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
@@ -12,17 +12,15 @@
       </div>
     </div>
   </a>
-  <!-- <div (click)="addToWishlistProduct(product)" class=" cursor-pointer   d-flex  justify-content-end "> -->
-  <div (click)="addToWishlist(product)" class=" cursor-pointer   d-flex  justify-content-end ">
+   <!-- <div (click)="addToWishlist(product)"   class=" cursor-pointer   d-flex  justify-content-end ">
 
-    <i [class]="isAddedToWishlist ? 'fa fa-heart fs-3  ' : 'far fa-heart  fs-3'" [style.color]="isAddedToWishlist ? 'red' : 'black'"></i>
-        <!-- <i class="fa" [ngClass]="{'fa-heart fs-3 text-danger': isAddedToWishlist, 'far fa-heart  fs-3': !isAddedToWishlist}" [style.color]="isAddedToWishlist ? 'red' : 'black'"></i> -->
-   </div>
+     <i  [class]="isProductId(product._id) ? 'fa fa-heart fs-3  ' : 'far fa-heart  fs-3'" [style.color]="isProductId(product._id) ? 'red' : 'black'"></i>
+    </div> -->
 
 
   <div class=" d-flex justify-content-between  align-items-center   btnN  ">
 
-    <button (click)="addToCart(product._id)" (click)="showSuccess()" class="btn bg-main w-100 text-white mt-3">
+    <button (click)="addToCart(product._id)"  class="btn bg-main w-100 text-white mt-3">
       <span *ngIf="!isLoading">+ Add
         ToCart</span>
       <span *ngIf="isLoading"><i class="fas  fa-spin fa-spinner"></i></span>
@@ -33,3 +31,6 @@
 
   </div>
 </div>
+
+
+<app-loading *ngIf="isLoading"></app-loading>

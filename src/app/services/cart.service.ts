@@ -9,15 +9,26 @@ export class CartService {
   //singleton instance
   // headers: any = { token: localStorage.getItem('userToken') };
   cartItemsNum=new BehaviorSubject<number>(0)
- 
+
   constructor(private _HttpClient: HttpClient) {
-    this.getUserCart().subscribe({
-      next: (res) => {
-        // console.log(res.numOfCartItems);
-        this.cartItemsNum.next(res.numOfCartItems) ;
-      },
-    });
+    this.updateCartItemCount()
   }
+
+updateCartItemCount(){
+  this.getUserCart().subscribe({
+    next: (res) => {
+      // console.log(res.numOfCartItems);
+      this.cartItemsNum.next(res.numOfCartItems) ;
+    },
+    error:(err)=>{
+      console.error(err);
+      if(err.status==404){
+        this.cartItemsNum.next(0);
+      }
+    }
+  });
+ }
+
   addCartItem(id: string): Observable<any> {
     return this._HttpClient.post(
       `https://ecommerce.routemisr.com/api/v1/cart`,
@@ -60,4 +71,9 @@ export class CartService {
 
 
 
+  ClearUserCart(): Observable<any>{
+    return this._HttpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart`, {
+      // headers: this.headers,
+    });
+  }
 }

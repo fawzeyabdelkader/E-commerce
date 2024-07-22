@@ -18,4 +18,6 @@ export interface IProduct {
   brand: IBrand;
   ratingsAverage: number;
   isInWishlist?: boolean;
+  name:string
+  image:string
 }

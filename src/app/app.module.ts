@@ -37,6 +37,8 @@ import { AddEGPPipe } from './pipes/add-egp.pipe';
 import { TitleSlicePipe } from './pipes/title-slice.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { AllWishListComponent } from './components/all-wish-list/all-wish-list.component';
+import { CategoryProductComponent } from './components/category-product/category-product.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { AllWishListComponent } from './components/all-wish-list/all-wish-list.c
     TitleSlicePipe,
     SearchPipe,
     AllWishListComponent,
+    CategoryProductComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,23 +80,24 @@ import { AllWishListComponent } from './components/all-wish-list/all-wish-list.c
     FormsModule,
     CarouselModule,
     //^ Toaster
-    ToastrModule.forRoot({
-      timeOut: 10000, // وقت عرض رسالة التوست
-      positionClass: 'toast-top-right', // مكان عرض رسالة التوست
-      preventDuplicates: true, // منع تكرار رسائل التوست
-      closeButton: true, // عرض زر الإغلاق
-      progressBar: true, // عرض شريط التقدم
-      progressAnimation: 'increasing', // نوع حركة شريط التقدم
-      messageClass: 'toast-message', // الفئة CSS لنص رسالة التوست
+    // ToastrModule.forRoot({
+    //   timeOut: 10000, // وقت عرض رسالة التوست
+    //   positionClass: 'toast-top-right', // مكان عرض رسالة التوست
+    //   preventDuplicates: true, // منع تكرار رسائل التوست
+    //   closeButton: true, // عرض زر الإغلاق
+    //   progressBar: true, // عرض شريط التقدم
+    //   progressAnimation: 'increasing', // نوع حركة شريط التقدم
+    //   messageClass: 'toast-message', // الفئة CSS لنص رسالة التوست
 
-      tapToDismiss: true, // إغلاق رسالة التوست عند النقر عليها
-      extendedTimeOut: 1000, // وقت الانتظار الإضافي بعد تمرير الماوس
-      enableHtml: true, // تمكين عرض HTML
-      titleClass: 'toast-title', // الفئة CSS لعنوان رسالة التوست
-      easing: 'ease-in', // نوع التسهيل للرسوم المتحركة
-      easeTime: 300, // وقت التسهيل للرسوم المتحركة
-      onActivateTick: false, // تحديث عرض الرسوم المتحركة في الوقت المناسب
-    }),
+    //   tapToDismiss: true, // إغلاق رسالة التوست عند النقر عليها
+    //   extendedTimeOut: 1000, // وقت الانتظار الإضافي بعد تمرير الماوس
+    //   enableHtml: true, // تمكين عرض HTML
+    //   titleClass: 'toast-title', // الفئة CSS لعنوان رسالة التوست
+    //   easing: 'ease-in', // نوع التسهيل للرسوم المتحركة
+    //   easeTime: 300, // وقت التسهيل للرسوم المتحركة
+    //   onActivateTick: false, // تحديث عرض الرسوم المتحركة في الوقت المناسب
+    // }),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

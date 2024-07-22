@@ -34,17 +34,7 @@ handelForGetPassword(form:FormGroup){
 }
 
 
- 
-  // **  Test Email Valid Or Invalid
-  emailValid: string = '';
-  testForGetEmail(x: any) {
-    if (x.forGetPasswordForm.get('email').status == 'INVALID') {
-      this.emailValid = 'la';
-    } else if (x.forGetPasswordForm.get('email').status == 'VALID') {
-      this.emailValid = 'tmam';
-    }
-    console.log(this.emailValid);
-  }
 
+ 
 
 }

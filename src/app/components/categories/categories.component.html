@@ -1,7 +1,7 @@
  <div class="row g-4 py-5">
-   <div *ngFor="let category of AllCategories" class="col-6 col-sm-4 col-md-3">
+   <div *ngFor="let category of AllCategories" class="col-6 col-sm-4 col-md-3  ">
     <a [routerLink]="['/products/category',category._id]">
-      <div class="border p-3 shadow rounded">
+      <div class="category-product p-3 ">
         <img [src]="category.image" class="w-100 rounded object-fit-cover" height="300px"   alt="">
         <p class="text-center mt-2 fw-bold text-main">{{category.name}}</p>
       </div>
@@ -10,17 +10,5 @@
  </div>
 
 
-<!-- <div class="row g-4 py-5 justify-content-center">
-  <ng-container *ngFor="let category of AllCategories">
-    <div class="col-6 col-sm-4 col-md-3">
-      <a href="">
-
-        <div class="border p-3 shadow rounded text-center">
-          <img [src]="category.image" class="w-100 rounded object-fit-cover" height="300px" alt="">
-          <p class="mt-2 fw-bold text-main">{{category.name}}</p>
-        </div>
-      </a>
-    </div>
-  </ng-container>
-</div> -->
+ 
 

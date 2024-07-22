@@ -15,7 +15,7 @@
             <p class="font-sm text-secondary fw-bold">Welcome back to FreshCart! Enter your email to get started.</p>
           </div>
 
-          <form class="needs-validation" (ngSubmit)="handelLogin(loginForm)" [formGroup]="loginForm">
+          <form   (ngSubmit)="handelLogin(loginForm)" [formGroup]="loginForm">
             <p *ngIf="errorMessage" class="text-center text-danger">{{errorMessage}}
               <i class="fa-solid fa-xmark ms-2"></i>
             </p>
@@ -43,7 +43,7 @@
                     [ngClass]="{'is-valid':loginForm.get('password')?.valid, 'is-invalid':loginForm.get('password')?.invalid && loginForm.get('password')?.dirty }"
                     formControlName="password" [type]="passwordFieldType" id="password" class="form-control"
                     placeholder="*****" required />
-                  <div class="position-absolute top-50 end-0 translate-middle-y me-3">
+                  <div class="position-absolute top-50 eye translate-middle-y me-3">
                     <i class="fa"
                       [ngClass]="{'fa-eye': passwordFieldType === 'password', 'fa-eye-slash': passwordFieldType === 'text'}"
                       (click)="togglePasswordVisibility()"></i>

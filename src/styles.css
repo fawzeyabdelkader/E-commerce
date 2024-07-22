@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --main-color: #0aad0a;
   --light-color: #f0f3f2;
@@ -27,7 +27,7 @@ body {
 .form-check-input:focus {
   border-color: var(--main-color) !important;
 
-  box-shadow: 0 0 0 .25rem #7dd77da1 !important;
+  box-shadow: 0 0 0 0.25rem #7dd77da1 !important;
 }
 input.ng-invalid.ng-dirty {
   border: 2px solid red;
@@ -45,13 +45,18 @@ input.ng-valid.ng-dirty {
 .cursor-pointer {
   cursor: pointer;
 }
-*{
+* {
   font-family: "Inter Tight", sans-serif;
 }
 a,
 a:hover {
-  /* color: black; */
+  color: black;
   text-decoration: none;
+}
+.product {
+  box-shadow: var(--shadow);
+  border: solid 1px var(--main-color);
+  border-radius: 15px;
 }
 .product:hover {
   box-shadow: var(--shadow);
@@ -68,7 +73,7 @@ a:hover {
   opacity: 1;
   transform: translateY(0%);
 }
-.product .fa-heart{
+.product .fa-heart {
   transition: transform 1s, opacity 1s;
   transform: translateY(-20px);
   opacity: 0;
@@ -77,7 +82,9 @@ a:hover {
   opacity: 1;
   transform: translateY(0);
 }
-
+.eye {
+  right: 15px;
+}
 
 .font-sm {
   font-size: 14px;
@@ -105,33 +112,67 @@ a:hover {
 
 .toast-title {
   font-weight: bold;
-
 }
 
 
-
-/* ?=======> Scrollbar Customization Start*/
-::-webkit-scrollbar {
-  width: 8px;
-  background-color: #f5f5f5;
+/* =============== */
+.card-product {
+  transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
 }
 
-::-webkit-scrollbar-track {
-  box-shadow: 0 0 6px #0000004d inset;
-  border-radius: 10px;
-  background-color: #f5f5f5;
+.card-body {
+  padding: 15px;
 }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px #0000004d;
-  background-color: var(--main-color);
+.card-product:hover {
+  border: 1px solid var(--main-color);
+  box-shadow: 0 7px 15px var(--main-color);
+  transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #7bb820;
-  scrollbar-width: thin;
-  scrollbar-color: var(--main-color) #f1f1f1;
+.card-product-action {
+  overflow: hidden;
 }
+.card-product-action .card-product-action-heart {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+}
+.card-product:hover .card-product-action-heart {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.3s ease 0s;
+}
+/* ========================= */
 
-/* ?=======> Scrollbar Customization End*/
+  /* ?=======> Scrollbar Customization Start*/
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: 0 0 6px #0000004d inset;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px #0000004d;
+    background-color: var(--main-color);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #7bb820;
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-color) #f1f1f1;
+  }
+  
+  /* ?=======> Scrollbar Customization End*/

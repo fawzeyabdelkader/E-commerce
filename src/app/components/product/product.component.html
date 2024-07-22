@@ -1,36 +1,53 @@
-<div class="p-4 product ">
-<i (click)="addToWishlist(product._id)" [class]="isWishListProduct(product._id)?'fas text-danger':'fa-regular'"  class="fa-heart fs-4 cursor-pointer"></i>
-  <a [routerLink]="['/product',product._id]">
-    <img [src]="product.imageCover" class="w-100" [alt]="product.title" />
-    <span class="font-sm text-main fw-bold">{{product.category.name}}</span>
-    <p class="fw-bold">{{product.title|titleSlice:2}}</p>
-    <div class="d-flex justify-content-between">
-      <span class="fw-bold font-sm">{{product.price | addEGP}} </span>
-      <div class="">
-        <i class="fa-solid fa-star rating-color mx-2"></i>
-        <span class="fw-bold font-sm">{{product.ratingsAverage}}</span>
+<app-loading *ngIf="isLoading"></app-loading>
+
+
+<section class="my-lg-5">
+
+  <div class="card card-product">
+    <div class="card-body">
+      <a [routerLink]="['/product',product._id]">
+        <div class="text-center">
+
+          <a href="#!"><img [src]="product.imageCover" [alt]="product.title" class="mb-3 img-fluid " /></a>
+
+        </div>
+
+        <div class="text-small mb-1">
+          <a href="#!" class="text-decoration-none text-muted"><small>{{product.category.name}}</small></a>
+        </div>
+        <h2 class="fs-6"><a href="./pages/shop-single.html"
+            class="text-inherit text-decoration-none fw-bold">{{product.title|titleSlice:2}}</a></h2>
+        <div>
+          <span class="text-dark fw-bold">{{product.price | addEGP}}</span>
+        </div>
+        <div>
+          <small class="text-warning">
+
+            <i class="fa-solid fa-star rating-color  me-2"></i>
+          </small>
+          <span class="text-muted small">{{product.ratingsAverage}}</span>
+        </div>
+
+      </a>
+      <div class="d-flex justify-content-between align-items-center mt-3 position-relative  card-product-action">
+
+        <div class=" d-flex justify-content-between  align-items-center">
+          <button (click)="addToCart(product._id)" class="btn bg-main text-white">
+            <span *ngIf="!isLoading">AddToCart
+              <i class="fas fa-shopping-cart ms-2"></i>
+
+            </span>
+            <span *ngIf="isLoading"><i class="fas  fa-spin fa-spinner"></i></span>
+          </button>
+        </div>
+
+
+        <i (click)="addToWishlist(product._id)" [class]="isWishListProduct(product._id)?'fas text-danger':'fa-regular'"
+          class="fa-heart fs-4 cursor-pointer fs-3 card-product-action-heart me-4"></i>
+
+
       </div>
     </div>
-  </a>
-   <!-- <div (click)="addToWishlist(product)"   class=" cursor-pointer   d-flex  justify-content-end ">
-
-     <i  [class]="isProductId(product._id) ? 'fa fa-heart fs-3  ' : 'far fa-heart  fs-3'" [style.color]="isProductId(product._id) ? 'red' : 'black'"></i>
-    </div> -->
-
-
-  <div class=" d-flex justify-content-between  align-items-center   btnN  ">
-
-    <button (click)="addToCart(product._id)"  class="btn bg-main w-100 text-white mt-3">
-      <span *ngIf="!isLoading">+ Add
-        ToCart</span>
-      <span *ngIf="isLoading"><i class="fas  fa-spin fa-spinner"></i></span>
-    </button>
-
-
-
-
   </div>
-</div>
 
-
-<app-loading *ngIf="isLoading"></app-loading>
+</section>

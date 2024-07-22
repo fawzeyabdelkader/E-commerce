@@ -4,9 +4,10 @@
 
 <input [(ngModel)]="searchItem" type="text" class="my-3 form-control" placeholder="&#xF002; Search by product name ..."
   style="font-family:Arial, FontAwesome" />
-<div class="row">
+<div class="row ">
   <h3 class="fw-bold">Popular items this season</h3>
-  <div *ngFor="let product of allProducts|search:searchItem" class="col-sm-6 col-md-4  col-xl-3">
+
+  <div *ngFor="let product of allProducts|search:searchItem" class="col-sm-12 col-md-4  col-xl-3">
     <app-product [product]="product"></app-product>
   </div>
 </div>

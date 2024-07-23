@@ -126,6 +126,9 @@ a:hover {
 .card-body {
   padding: 15px;
 }
+.card-product-action {
+  overflow: hidden;
+}
 
 .card-product:hover {
   border: 1px solid var(--main-color);
@@ -136,15 +139,12 @@ a:hover {
   -o-transition: 0.2s;
 }
 
-.card-product-action {
-  overflow: hidden;
-}
-.card-product-action .card-product-action-heart {
+.card-product-action .card-product-action-hover {
   transform: translateX(100%);
   opacity: 0;
   transition: all 0.3s ease 0s;
 }
-.card-product:hover .card-product-action-heart {
+.card-product:hover .card-product-action-hover {
   transform: translateX(0);
   opacity: 1;
   transition: all 0.3s ease 0s;

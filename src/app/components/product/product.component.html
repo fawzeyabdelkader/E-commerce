@@ -31,7 +31,7 @@
       </a>
       <div class="d-flex justify-content-between align-items-center mt-3 position-relative  card-product-action">
 
-        <div class=" d-flex justify-content-between  align-items-center">
+        <div class=" d-flex justify-content-between  align-items-center card-product-action-hover">
           <button (click)="addToCart(product._id)" class="btn bg-main text-white">
             <span *ngIf="!isLoading">AddToCart
               <i class="fas fa-shopping-cart ms-2"></i>
@@ -43,7 +43,7 @@
 
 
         <i (click)="addToWishlist(product._id)" [class]="isWishListProduct(product._id)?'fas text-danger':'fa-regular'"
-          class="fa-heart fs-4 cursor-pointer fs-3 card-product-action-heart me-4"></i>
+          class="fa-heart fs-4 cursor-pointer fs-3 card-product-action-hover me-4"></i>
 
 
       </div>

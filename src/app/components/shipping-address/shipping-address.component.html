@@ -34,7 +34,16 @@
       <p *ngIf=" shippingAddressForm.get('city')?.getError('required')" class="my-0">city is required</p>
     </div>
     <!--^-------------------------------------------------------------------------- -->
-    <button class="btn bg-main text-white mt-3 d-block ms-auto fw-bold">Pay Now
-    </button>
+
+
+    <!-- btn -->
+    <div class="col-12 d-grid">
+      <button [disabled]="shippingAddressForm.invalid || isLoading"
+        class="btn bg-main text-white mt-3 d-block ms-auto fw-bold">
+        <span *ngIf="!isLoading">Pay Now</span>
+        <span *ngIf="isLoading"><i class="fas  fa-spin fa-spinner"></i></span>
+      </button>
+    </div>
+
   </form>
 </div>

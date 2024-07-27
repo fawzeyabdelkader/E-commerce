@@ -11,6 +11,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class ShippingAddressComponent implements OnInit {
   errorMessage: string = '';
   cartId: string | null = '';
+  isLoading: boolean = false;
+
   constructor(
     private _CartService: CartService,
     private _ActivatedRoute: ActivatedRoute
@@ -36,16 +38,20 @@ export class ShippingAddressComponent implements OnInit {
   }
   handleShippingAddress(form: FormGroup) {
     // console.log(form.value);
+    this.isLoading = true;
+
     const finalCartId: string = this.cartId !== null ? this.cartId : '';
-    
+
     this._CartService.onLinePayMent(finalCartId, form.value).subscribe({
       next: (res) => {
         console.log(res);
         this.redirectToPaymentPage(res.session.url);
+        this.isLoading = false;
       },
       error: (err) => {
         // console.log(err.error.message);
         this.errorMessage = err.error.message;
+        this.isLoading = false;
       },
     });
   }

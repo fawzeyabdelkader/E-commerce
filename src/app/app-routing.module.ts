@@ -18,7 +18,8 @@ import { ShippingAddressComponent } from './components/shipping-address/shipping
 import { OrdersComponent } from './components/orders/orders.component';
 import { AllWishListComponent } from './components/all-wish-list/all-wish-list.component';
 import { CategoryProductComponent } from './components/category-product/category-product.component';
- 
+import { BrandsDetailsComponent } from './components/brands-details/brands-details.component';
+
 const routes: Routes = [
   {path:'',redirectTo:'register',pathMatch:'full'},
 
@@ -28,8 +29,8 @@ const routes: Routes = [
   {path:'categories',canActivate:[authGuard],component:CategoriesComponent},
   {path:'product/category/:id',canActivate:[authGuard],component:CategoryProductComponent},
   {path:'brands',canActivate:[authGuard],component:BrandsComponent},
-   {path:'product/:id',canActivate:[authGuard],component:ProductDetailsComponent},
-  {path:'shippingAddress/:id',canActivate:[authGuard],component:ShippingAddressComponent},
+  {path:'brands/:id',canActivate:[authGuard],component:BrandsDetailsComponent},
+   {path:'shippingAddress/:id',canActivate:[authGuard],component:ShippingAddressComponent},
   {path:'allorders',canActivate:[authGuard],component:OrdersComponent},
   {path:'allWishList',canActivate:[authGuard],component:AllWishListComponent},
 

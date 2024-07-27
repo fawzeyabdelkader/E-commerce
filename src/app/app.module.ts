@@ -39,6 +39,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { AllWishListComponent } from './components/all-wish-list/all-wish-list.component';
 import { CategoryProductComponent } from './components/category-product/category-product.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { BrandsDetailsComponent } from './components/brands-details/brands-details.component';
  
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     AllWishListComponent,
     CategoryProductComponent,
     LoadingComponent,
-   ],
+    BrandsDetailsComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

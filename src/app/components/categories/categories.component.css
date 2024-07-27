@@ -1,16 +1,1 @@
-.category-product:hover {
-   box-shadow: 0 5px 10px var(--main-color);
-  transition: 0.2s;
-  -moz-transition: 0.2s;
-  -webkit-transition: 0.2s;
-  -o-transition: 0.2s;
-}
-.category-product p {
-  transform: translateX(6rem);
-  opacity: 0;
-  transition: all .3s ease-in-out; 
-}
-.category-product:hover p{
- opacity: 1;
- transform: translateY(0);
-}
+ 
